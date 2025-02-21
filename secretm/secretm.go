@@ -2,7 +2,9 @@ package secretm
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
+	"strings"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/secretsmanager"
@@ -13,6 +15,11 @@ import (
 func GetSecret(nombreSecret string) (models.SecretRDSjson, error) { //funcion de SECRET MANAGER
 	var datosSecret models.SecretRDSjson
 	fmt.Println("> Pudio secreto" + nombreSecret)
+
+	nombreSecret = strings.TrimSpace(nombreSecret) // Elimina espacios en blanco
+	if nombreSecret == "" {
+		return datosSecret, errors.New("el nombre del secreto está vacío")
+	}
 
 	svc := secretsmanager.NewFromConfig(awsgo.Cfg)
 	clave, err := svc.GetSecretValue(awsgo.Ctx, &secretsmanager.GetSecretValueInput{
