@@ -54,6 +54,6 @@ func EjecutoLambda(ctx context.Context, event events.CognitoEventUserPoolsPostCo
 
 func ValidoParametros() bool {
 	var traeParametro bool
-	_, traeParametro = os.LookupEnv("SecretName")
+	_, traeParametro = os.LookupEnv("Secretname")
 	return traeParametro
 }
