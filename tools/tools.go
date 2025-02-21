@@ -8,7 +8,7 @@ import (
 func FechaMySQL() string { //formatea la hora para mysql
 	t := time.Now()
 
-	return fmt.Sprintf("%d-%02d-%02dT%02d:%02d:%02d",
+	return fmt.Sprintf("%d-%02d-%02d %02d:%02d:%02d",
 		t.Year(),
 		t.Month(),
 		t.Day(),
